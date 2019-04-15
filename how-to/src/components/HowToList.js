@@ -1,13 +1,16 @@
 import React from "react"; 
 import HowTo from "./HowTo"; 
-
+import SearchBar from './SearchBar'
 
 class HowToList extends React.Component {
     state = {
         HowTos: [
-            {name: "Guide 1"}, 
-            {name: "Guide 2"}, 
-            {name: "Guide 3"}
+            {name: "Guide 1",
+            tag: ["home", "garden"]}, 
+            {name: "Guide 2",
+            tag: ["baking", "cooking"]}, 
+            {name: "Guide 3",
+            tag: ["home", "cooking"]}
         ],
         isLoggedIn: true,
     }
@@ -19,6 +22,7 @@ render() {
 
     return(
         <div>
+            <SearchBar />
             hello
             {this.state.HowTos.map(howTo => (
                 <HowTo 
