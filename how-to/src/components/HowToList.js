@@ -18,12 +18,13 @@ class HowToList extends React.Component {
         isLoggedIn: true,
         filteredList: [],
         isFiltered: false,
+        search: '',
     }
 
     filterGuides = (e, search) => {
         e.preventDefault(); 
         let newArray = [];
-        console.log(this.props.HowTo)
+        console.log(this.state.HowTos)
         this.state.HowTos.map(guide => {
             const LowerCase = guide.name.toLowerCase()
             // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
@@ -41,12 +42,32 @@ class HowToList extends React.Component {
             }
         }
         )
+
         this.setState({
             filteredList: newArray,
             isFiltered: true,
          })
-        console.log(newArray);  
+        console.log(this.state.isFiltered);  
     }
+
+    clearSearch = e => {
+        e.preventDefault();
+        console.log(this.state.isFiltered);  
+
+        console.log("Clear search")
+        this.setState({
+            isFiltered: false,
+            search: '',
+        })
+    }
+
+
+    handleChange = (e, text) => {
+        this.setState({
+            search: text
+        });
+    }
+
 
 render() {
     if(!localStorage.getItem("token")) {
@@ -60,6 +81,9 @@ render() {
                 filterGuides = {this.filterGuides} 
                 filteredList={this.state.filteredList} 
                 isFiltered={this.state.isFiltered}
+                clearSearch = {this.clearSearch}
+                search = {this.state.search}
+                handleChange = {this.handleChange}
             />
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <HowTo 
