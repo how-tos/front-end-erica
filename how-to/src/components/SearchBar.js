@@ -1,21 +1,22 @@
 import React from 'react';
+import { fromEventPattern } from 'rxjs';
 
 
 class SearchBar extends React.Component { 
-    state = {
+    constructor(props) {
+    super(props);
+    this.state = {
         search: "",
-        filteredList: [], 
+        filteredList: props.filteredList, 
+        isFiltered: props.isFiltered,
+        HowTo: props.HowTo,
+    }
     }
 
     handleChange = e => {
         this.setState({
             search: e.target.value
         });
-    }
-
-    filterGuides = (e, search) => {
-        e.preventDefault(); 
-        console.log(search)
     }
 
     render(){
@@ -27,7 +28,7 @@ class SearchBar extends React.Component {
             onChange={this.handleChange}
             value={this.state.search}
             />
-            <button onClick={ () => {this.filterGuides(this.state.search)}}>Search</button>
+            <button onClick={ (e) => {this.props.filterGuides(e, this.state.search)}}>Search</button>
             </div>
         )
     }
