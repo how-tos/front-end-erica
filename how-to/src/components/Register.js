@@ -17,6 +17,16 @@ class Login extends React.Component {
     }; 
     handleSubmit = e => {
       e.preventDefault();
+    //   const credentials = this.state;
+    //   axios
+    //   .post("http://localhost:5000/auth/register", credentials)
+    //   .then(res => {
+    //     // save it to localStorage
+    //     const token = res.data.payload;
+    //     localStorage.setItem("token", token);
+    //     this.props.history.push("/HowToList");
+    //   })
+    //   .catch(err => console.log(err.response));
       const credentials = this.state;
       console.log(this.props.history)
       return new Promise(() => {
@@ -24,16 +34,9 @@ class Login extends React.Component {
           localStorage.setItem("token", token);
           this.props.history.push('/howTos')
       })
-      // axios
-      //   .post("http://localhost:5000/api/login", credentials)
-      //   .then(res => {
-      //     // save it to localStorage
-      //     const token = res.data.payload;
-      //     localStorage.setItem("token", token);
-      //     this.props.history.push("/friends");
-      //   })
-      //   .catch(err => console.log(err.response));
-    };
+      };
+
+    
     render() {
       return (
         <div className = "login-page">
