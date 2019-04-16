@@ -3,6 +3,8 @@
     flex-direction: row;
     box-shadow: 0px 0px 20px rgb(230, 230, 230);
     border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .login-input {
@@ -13,37 +15,42 @@
 
 .header-text{ 
     text-align: left;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 23%;
+    margin-bottom: 10%;
 }
 
 .user-form {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
     background-color: white;
 }
 
 input{
-    height: 50px;
+    height: 40px;
     box-shadow: none;
     border: none;
     outline: none;
     margin-bottom: 20px;
-    border: 2px solid #f1f1f1;
-    border-radius: 10px;
+    border-bottom: 2px solid #d8d8d8;
     padding-left: 10px;
-    font-size: 1.0rem;
+    font-size: 0.8rem;
 }
 
-button {
+.login {
+    margin-top: 30px;
     font-size: 14px;
     border: 1px solid #000AFF;
     background-color: white;
     color: #000AFF;
     height: 40px;
     border-radius: 5px;
+    width: 80%;
 }
 
-button:hover{ 
+.login:hover{ 
     background-color: #000AFF;
     color: white;
 }
@@ -61,19 +68,61 @@ input:focus {
 }
 
 .orange-rectangle{
-    width: 80%;
+    width: 62%;
     position: absolute;
     left: 0;
     background-color: #FF7800;
     height: 100%;
     border-radius: 10px 0 0 10px;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.description{
+    margin-top: 20px;
+    text-align: left;
+    font-size: 12px;
+    color: white;
+}
+
+.welcome {
+    text-align: left;
+    margin-top: 90px;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    line-height: 1.5
 }
 
 .pale-rectangle{
     background-color: #FFAE66;
-    height: 50%;
+    height: 100%;
     position: absolute; 
-    margin-top: 70px;
-    width: 80%;
-    right: 30px;
+    width: 3%;
+    right: 0px;
+    margin-right: 65px; 
+}
+
+.circle{
+    background-color: #FF7800; 
+    border: 10px solid white; 
+    height: 70px;
+    width: 70px; 
+    border-radius: 100px;
+    margin-right: 5%;
+    position: absolute;
+    right: 0;
+    margin-top: 15%;
+}
+
+.register{
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.spacing{
+    height: 15%;
 }

@@ -76,6 +76,7 @@ render() {
 
     return(
         <div>
+            
             <SearchBar 
                 HowTo={this.state.HowTos} 
                 filterGuides = {this.filterGuides} 
