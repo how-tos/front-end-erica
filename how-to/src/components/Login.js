@@ -2,12 +2,17 @@ import React from "react";
 import axios from "axios";
 import '../css/login.css'
 import {Route, Link} from "react-router-dom"
+import LogoWhite from '../img/H2-Logo-White.png'
 
 class Login extends React.Component {
-  state = {
-    username: "",
-    password: ""
-  };
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: "",
+            password: "",
+            isLoggedIn: props.isLoggedIn,
+          };
+    }
 
   handleChange = e => {
     this.setState({
@@ -16,29 +21,34 @@ class Login extends React.Component {
   }; 
   handleSubmit = e => {
     e.preventDefault();
-    const credentials = this.state;
-    console.log(this.props.history)
-    return new Promise(() => {
-        const token = "loggedIn";
-        localStorage.setItem("token", token);
-        this.props.history.push('/howTos')
-    })
-    // axios
-    //   .post("http://localhost:5000/api/login", credentials)
-    //   .then(res => {
-    //     // save it to localStorage
-    //     const token = res.data.payload;
+    // const credentials = this.state;
+    // console.log(this.props.history)
+    // return new Promise(() => {
+    //     const token = "loggedIn";
     //     localStorage.setItem("token", token);
-    //     this.props.history.push("/friends");
-    //   })
-    //   .catch(err => console.log(err.response));
+    //     this.props.history.push('/howTos')
+    // })
+    const credentials = this.state;
+    axios
+      .post("https://how-to-lambda.herokuapp.com/api/auth/login", credentials)
+      .then(res => {
+        // save it to localStorage
+        const token = res.data.payload;
+        localStorage.setItem("token", token);
+        this.props.history.push("/howTos");
+        this.setState ({
+            isLoggedIn: true,
+        })
+      })
+      .catch(err => console.log(err.response));
   };
   render() {
     return (
       <div className = "login-page">
         <div className= "design">
             <div className = "orange-rectangle">
-                <div className = "welcome">Welcome to <br/>How-to!</div>
+                <div className = "welcome">Welcome to</div>
+                <img className="logo" src={LogoWhite} />
                 <div className = "description">Your go-to app for browsing a library of how-to guides and writing your own. Log in or sign up to begin your how-to journey today.Your go-to app for browsing a library of how-to guides and writing your own. Log in or sign up to begin your how-to journey today.</div>
             </div>
             <div className = "pale-rectangle"/>
@@ -61,8 +71,8 @@ class Login extends React.Component {
                     value={this.state.password}
                     placeholder = "password"
                 />
-            <button className="login">Log in</button>
-            <div className="register">New user?     <Link to = "/register">Register</Link></div>
+            <button className="login" onSubmit={this.handleSubmit}>Log in</button>
+            <div className="register">New user?<Link to = "/register">Register</Link></div>
             </form>
         </div>
       </div>

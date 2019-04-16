@@ -1,13 +1,44 @@
-import React from "react";
+import React, { Component } from 'react';
+import '../css/howto.css'
+import HeartIcon from '../img/heart_outline.svg'
+import RedHeart from '../img/red_heart.png'
 
-const HowTo = (props) => {
-    console.log(props.name)
-    return (
 
-        <div>
-            <h1>{props.name}</h1>
-        </div>
-    )
+class HowTo extends React.Component {
+    constructor (props) {
+        super(props)
+        this.state={
+            isSaved: false,
+            saved: false,
+        }
+    }
+
+    save = (e) => {
+        e.preventDefault();
+        let saved = this.state.isSaved;
+        console.log(saved);
+        if(saved){
+            this.setState({
+                isSaved: !this.state.saved,
+                saved: !this.state.saved,
+            })
+        } else{
+            this.setState({
+                isSaved: !this.state.saved,
+                saved: !this.state.saved,
+            })
+        }
+    }
+
+    render() {
+        return (
+
+            <div className="Howto">
+                <h1>{this.props.name}</h1>
+                <img onClick = {this.save} className="heart-icon" src={!this.state.isSaved ? HeartIcon : RedHeart} />
+            </div>
+        )
+    }
 }
 
 export default HowTo;

@@ -6,6 +6,8 @@ import '../css/login.css'
 
 class Login extends React.Component {
     state = {
+    firstName: '',
+    lastName: '',
       username: "",
       password: ""
     };
@@ -17,23 +19,28 @@ class Login extends React.Component {
     }; 
     handleSubmit = e => {
       e.preventDefault();
-    //   const credentials = this.state;
-    //   axios
-    //   .post("http://localhost:5000/auth/register", credentials)
-    //   .then(res => {
-    //     // save it to localStorage
-    //     const token = res.data.payload;
-    //     localStorage.setItem("token", token);
-    //     this.props.history.push("/HowToList");
-    //   })
-    //   .catch(err => console.log(err.response));
       const credentials = this.state;
-      console.log(this.props.history)
-      return new Promise(() => {
-          const token = "loggedIn";
-          localStorage.setItem("token", token);
-          this.props.history.push('/howTos')
+      console.log(this.state)
+      axios
+
+      .post("https://how-to-lambda.herokuapp.com/api/auth/register", credentials)
+
+      .then(res => {
+        // save it to localStorage
+        const token = res.data.payload;
+        localStorage.setItem("token", token);
+        this.props.history.push("/howTos");
       })
+
+      .catch(err => console.log(err.response));
+
+    //   const credentials = this.state;
+    //   console.log(this.props.history)
+    //   return new Promise(() => {
+    //       const token = "loggedIn";
+    //       localStorage.setItem("token", token);
+    //       this.props.history.push('/howTos')
+    //   })
       };
 
     
@@ -53,16 +60,16 @@ class Login extends React.Component {
               <form className = "user-form" action="" onSubmit={this.handleSubmit}>
                   <input
                       type="text"
-                      name="firstname"
+                      name="firstName"
                       onChange={this.handleChange}
-                      value={this.state.firstname}
+                      value={this.state.firstName}
                       placeholder = "first name"
                   />
                     <input
                       type="text"
-                      name="lastname"
+                      name="lastName"
                       onChange={this.handleChange}
-                      value={this.state.lastname}
+                      value={this.state.lastName}
                       placeholder = "last name"
                   />
                     <input

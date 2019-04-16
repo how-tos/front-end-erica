@@ -1,6 +1,11 @@
 import React from "react"; 
 import HowTo from "./HowTo"; 
 import SearchBar from './SearchBar'
+import Navigation from './Navigation'
+import AddHowTo from './AddHowTo'
+import Register from './Register'
+import {Route, Link} from "react-router-dom"
+import '../css/howto.css'
 
 class HowToList extends React.Component {
     state = {
@@ -12,6 +17,9 @@ class HowToList extends React.Component {
             tag: ["baking", "cooking"],
             id: 2}, 
             {name: "Guide 3: home cooking",
+            tag: ["home", "Cooking"],
+            id: 3},
+            {name: "Guide 4: home cooking",
             tag: ["home", "Cooking"],
             id: 3}
         ],
@@ -76,7 +84,8 @@ render() {
 
     return(
         <div>
-            
+             <Navigation />
+
             <SearchBar 
                 HowTo={this.state.HowTos} 
                 filterGuides = {this.filterGuides} 
@@ -86,6 +95,7 @@ render() {
                 search = {this.state.search}
                 handleChange = {this.handleChange}
             />
+            <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <HowTo 
                         key={howTo.id}
@@ -98,6 +108,9 @@ render() {
                     HowTo={howTo}
                     name={howTo.name}
                 />))}
+            </div>
+            <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
+            <Route path = "/register" render = {props => <Register {...props} /> } />
         </div>
     )
     }

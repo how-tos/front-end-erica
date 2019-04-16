@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Navigation from './Navigation'
 class AddHowTo extends React.Component {
     state={
         title: "",
@@ -16,12 +16,15 @@ class AddHowTo extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log("submitted")
+        const newHowTo = this.state; 
+
     }
 
 
 render() {
     return (
         <div>
+            <Navigation />
             <h1>New Guide</h1>
             <form action="" onSubmit={this.handleSubmit}>
             <input

@@ -1,0 +1,17 @@
+.Howto{ 
+    height: 200px;
+    border-radius: 10px;
+    width: 31%;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgb(230, 228, 228);
+}
+
+.list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.heart-icon{
+    height: 20px;
+}
