@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .App {
   text-align: center;
+  font-family: "Open Sans", sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 
 .App-logo {
@@ -30,4 +36,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-end;
 }

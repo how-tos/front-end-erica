@@ -12,11 +12,11 @@ class SearchBar extends React.Component {
     }
     }
 
-    // handleChange = e => {
-    //     this.setState({
-    //         search: e.target.value
-    //     });
-    // }
+    handleChange = e => {
+        this.setState({
+            search: e.target.value
+        });
+    }
 
     // clearSearch = e => {
     //     e.preventDefault();
@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
             <input
             type="text"
             name="search"
-            onChange={ (e) => {this.props.handleChange(e, this.target.value)}}
+            onChange={ (e) => {this.handleChange(e)}}
             value={this.state.search}
             />
             <button onClick={ (e) => {this.props.filterGuides(e, this.state.search)}}>Search</button>

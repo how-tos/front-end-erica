@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import './login.css'
+
+
 class Login extends React.Component {
   state = {
     username: "",
@@ -32,23 +35,29 @@ class Login extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h1>Login</h1>
-        <form action="" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <input
-            type="password"
-            name="password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <button>Log in</button>
-        </form>
+      <div className = "login-page">
+        <div className= "design">
+            <div className = "orange-rectangle"/>
+            <div className = "pale-rectangle"/>
+        </div>
+        <div className = "login-input">
+            <h1 className = "header-text">Login</h1>
+            <form className = "user-form" action="" onSubmit={this.handleSubmit}>
+                <input
+                    type="text"
+                    name="username"
+                    onChange={this.handleChange}
+                    value={this.state.username}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                />
+            <button>Log in</button>
+            </form>
+        </div>
       </div>
     );
   }
