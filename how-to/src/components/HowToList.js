@@ -21,6 +21,12 @@ class HowToList extends React.Component {
             id: 3},
             {name: "Guide 4: home cooking",
             tag: ["home", "Cooking"],
+            id: 3},
+            {name: "Guide 4: home cooking",
+            tag: ["home", "Cooking"],
+            id: 3},
+            {name: "Guide 4: home cooking",
+            tag: ["home", "Cooking"],
             id: 3}
         ],
         isLoggedIn: true,
@@ -97,13 +103,13 @@ render() {
             />
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
-                    <HowTo 
+                    <HowTo className="individualGuide"
                         key={howTo.id}
                         HowTo={howTo}
                         name={howTo.name}
                     />)) :
                     this.state.HowTos.map(howTo => (
-                <HowTo 
+                <HowTo className="individualGuide"
                     key={howTo.id}
                     HowTo={howTo}
                     name={howTo.name}

@@ -10,6 +10,7 @@ class HowTo extends React.Component {
         this.state={
             isSaved: false,
             saved: false,
+            savedGuides: [], 
         }
     }
 
@@ -34,8 +35,8 @@ class HowTo extends React.Component {
         return (
 
             <div className="Howto">
-                <h1>{this.props.name}</h1>
-                <img onClick = {this.save} className="heart-icon" src={!this.state.isSaved ? HeartIcon : RedHeart} />
+                <div className ="guideName">{this.props.name}</div>
+                <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
             </div>
         )
     }

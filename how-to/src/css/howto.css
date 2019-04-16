@@ -1,16 +1,27 @@
 .Howto{ 
     height: 200px;
-    border-radius: 10px;
+    border-radius: 0;
     width: 31%;
     margin: 10px;
     box-shadow: 0px 0px 10px rgb(230, 228, 228);
 }
 
+.Howto:nth-child(odd){
+    width: 25%;
+}
+
+.Howto:nth-child(even){
+    width: 34%;
+}
+
+
 .list{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
+
 
 .heart-icon{
     height: 20px;
