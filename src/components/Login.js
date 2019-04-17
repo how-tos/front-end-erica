@@ -71,8 +71,8 @@ class Login extends React.Component {
                     value={this.state.password}
                     placeholder = "password"
                 />
-            <button className="login" onSubmit={this.handleSubmit}>Log in</button>
-            <button className="register"><Link to = "/register">Register</Link></button>
+            <button className="login" onSubmit={this.handleSubmit}>Log In</button>
+            <button className="register"><Link to = "/register">Sign Up</Link></button>
             </form>
         </div>
       </div>
