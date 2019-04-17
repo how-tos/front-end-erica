@@ -21,13 +21,13 @@ class HowToList extends React.Component {
             id: 3},
             {name: "Guide 4: home cooking",
             tag: ["home", "Cooking"],
-            id: 3},
+            id: 4},
             {name: "Guide 4: home cooking",
             tag: ["home", "Cooking"],
-            id: 3},
+            id: 5},
             {name: "Guide 4: home cooking",
             tag: ["home", "Cooking"],
-            id: 3}
+            id: 6}
         ],
         isLoggedIn: true,
         filteredList: [],
@@ -61,17 +61,19 @@ class HowToList extends React.Component {
             filteredList: newArray,
             isFiltered: true,
          })
-        console.log(this.state.isFiltered);  
+        console.log(this.state.filteredList);  
     }
 
     clearSearch = e => {
         e.preventDefault();
-        console.log(this.state.isFiltered);  
 
         console.log("Clear search")
+        console.log(this.state.filteredList)
+        console.log(this.state.HowTos)
         this.setState({
             isFiltered: false,
             search: '',
+            filteredList: [],
         })
     }
 
