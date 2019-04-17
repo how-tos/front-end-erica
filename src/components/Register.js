@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import '../css/login.css'
-
+import {Route, Link} from "react-router-dom"
 
 
 class Login extends React.Component {
@@ -87,6 +87,7 @@ class Login extends React.Component {
                       placeholder = "password"
                   />
               <button className="login">Register</button>
+              <div className="register"><Link to = "/">Back to Login</Link></div>
               </form>
           </div>
         </div>
