@@ -39,7 +39,7 @@ class HowToList extends React.Component {
             .get("https://how-to-lambda.herokuapp.com/api/how-to")
             .then(res => {
                 this.setState({
-                    HowTos:res.data
+                    HowTos: res.data, 
                 });
             })
             .catch(err => console.log("failed to get data", err.response));
