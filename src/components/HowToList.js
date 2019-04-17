@@ -6,6 +6,8 @@ import AddHowTo from './AddHowTo'
 import Register from './Register'
 import {Route, Link} from "react-router-dom"
 import '../css/howto.css'
+import SavedGuides from './SavedGuides'
+
 
 class HowToList extends React.Component {
     state = {
@@ -119,6 +121,7 @@ render() {
             </div>
             <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
             <Route path = "/register" render = {props => <Register {...props} /> } />
+            <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />      
         </div>
     )
     }
