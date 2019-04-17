@@ -91,16 +91,17 @@ render() {
     return(
         <div>
              <Navigation />
-
-            <SearchBar 
-                HowTo={this.state.HowTos} 
-                filterGuides = {this.filterGuides} 
-                filteredList={this.state.filteredList} 
-                isFiltered={this.state.isFiltered}
-                clearSearch = {this.clearSearch}
-                search = {this.state.search}
-                handleChange = {this.handleChange}
-            />
+            <div className="header">
+                <SearchBar 
+                    HowTo={this.state.HowTos} 
+                    filterGuides = {this.filterGuides} 
+                    filteredList={this.state.filteredList} 
+                    isFiltered={this.state.isFiltered}
+                    clearSearch = {this.clearSearch}
+                    search = {this.state.search}
+                    handleChange = {this.handleChange}
+                />
+            </div>
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <HowTo className="individualGuide"
@@ -116,6 +117,7 @@ render() {
                 />))}
             </div>
             <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
+            <Route path = "/register" render = {props => <Register {...props} /> } />
             <Route path = "/register" render = {props => <Register {...props} /> } />
         </div>
     )

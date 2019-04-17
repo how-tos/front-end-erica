@@ -34,3 +34,7 @@ nav{
     font-weight: bold;
     border-radius: 50px;
 }
+
+.addGuide:hover{
+    background-color: rgb(84, 89, 235);
+}
