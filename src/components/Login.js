@@ -72,7 +72,7 @@ class Login extends React.Component {
                     placeholder = "password"
                 />
             <button className="login" onSubmit={this.handleSubmit}>Log In</button>
-            <button className="register"><Link to = "/register">Sign Up</Link></button>
+            <Link to = "/register"><button className="register">Sign Up</button></Link>
             </form>
         </div>
       </div>
