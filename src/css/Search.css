@@ -7,4 +7,17 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    /* border: 1px solid black; */
+
+}
+
+.searchbar {
+    height: 20px;
+    margin: 0 10px;
+}
+
+.searchInput {
+    display: flex; 
+    flex-direction: row;
+    height: 30px;
 }

@@ -11,7 +11,7 @@ const Navigation = () => {
         <div className="links">
             <Link to = "/savedGuides" className="heading">Saved Guides</Link>
             <Link to = "/myGuides" className="heading">My Guides</Link>
-            <Link to = "/addHowTo" className="addGuide">Add Guide</Link>
+            <Link to = "/addHowTo" className="addGuide">Make Guide</Link>
         
         </div>
 

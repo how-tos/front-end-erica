@@ -2,34 +2,31 @@ import React from "react";
 import HowTo from "./HowTo"; 
 import SearchBar from './SearchBar'
 import Navigation from './Navigation'
-import AddHowTo from './AddHowTo'
-import Register from './Register'
-import {Route, Link} from "react-router-dom"
 import '../css/howto.css'
-import SavedGuides from './SavedGuides'
+import axiosWithHeaders from './utils/headers';
 
 
 class HowToList extends React.Component {
     state = {
         HowTos: [
-            {name: "Guide 1",
-            tag: ["Home", "garden"],
-            id: 1}, 
-            {name: "Guide 2",
-            tag: ["baking", "cooking"],
-            id: 2}, 
-            {name: "Guide 3: home cooking",
-            tag: ["home", "Cooking"],
-            id: 3},
-            {name: "Guide 4: home cooking",
-            tag: ["home", "Cooking"],
-            id: 4},
-            {name: "Guide 4: home cooking",
-            tag: ["home", "Cooking"],
-            id: 5},
-            {name: "Guide 4: home cooking",
-            tag: ["home", "Cooking"],
-            id: 6}
+            // {name: "Guide 1",
+            // tag: ["Home", "garden"],
+            // id: 1}, 
+            // {name: "Guide 2",
+            // tag: ["baking", "cooking"],
+            // id: 2}, 
+            // {name: "Guide 3: home cooking",
+            // tag: ["home", "Cooking"],
+            // id: 3},
+            // {name: "Guide 4: home cooking",
+            // tag: ["home", "Cooking"],
+            // id: 4},
+            // {name: "Guide 4: home cooking",
+            // tag: ["home", "Cooking"],
+            // id: 5},
+            // {name: "Guide 4: home cooking",
+            // tag: ["home", "Cooking"],
+            // id: 6}
         ],
         isLoggedIn: true,
         filteredList: [],
@@ -37,33 +34,47 @@ class HowToList extends React.Component {
         search: '',
     }
 
-    filterGuides = (e, search) => {
-        e.preventDefault(); 
-        let newArray = [];
-        console.log(this.state.HowTos)
-        this.state.HowTos.map(guide => {
-            const LowerCase = guide.name.toLowerCase()
-            // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
-            const tags = guide.tag;
+    componentDidMount() {
+        axiosWithHeaders()
+            .get("https://how-to-lambda.herokuapp.com/api/how-to")
+            .then(res => {
+                this.setState({
+                    HowTos:res.data
+                });
+            })
+            .catch(err => console.log("failed to get data", err.response));
+        }
 
-            if (LowerCase.indexOf(search) > -1) {
-                newArray.push(guide);
-            }
-            else {
-                for (let i = 0; i<guide.tag.length; i++) {
-                    if (tags[i].toLowerCase().indexOf(search)> -1) {
-                        newArray.push(guide);
+    filterGuides = (e, search) => {
+        if (e.key=== 'Enter') {
+            let newArray = [];
+            console.log(this.state.HowTos)
+            this.state.HowTos.map(guide => {
+                const LowerCase = guide.name.toLowerCase()
+                // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
+                const tags = guide.tag;
+
+                if (LowerCase.indexOf(search) > -1) {
+                    newArray.push(guide);
+                }
+                else {
+                    for (let i = 0; i<guide.tag.length; i++) {
+                        if (tags[i].toLowerCase().indexOf(search)> -1) {
+                            newArray.push(guide);
+                        }
                     }
                 }
             }
-        }
-        )
+            )
 
-        this.setState({
-            filteredList: newArray,
-            isFiltered: true,
-         })
-        console.log(this.state.filteredList);  
+            this.setState({
+                filteredList: newArray,
+                isFiltered: true,
+            })
+            console.log(this.state.filteredList);  
+            return false;
+        }
+        return true;
     }
 
     clearSearch = e => {

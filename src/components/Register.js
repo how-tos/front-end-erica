@@ -87,7 +87,7 @@ class Login extends React.Component {
                       placeholder = "password"
                   />
               <button className="login">Register</button>
-              <div className="register"><Link to = "/">Back to Login</Link></div>
+              <Link to = "/"><button className="register">Back to Login</button></Link>
               </form>
           </div>
         </div>

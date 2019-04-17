@@ -15,6 +15,7 @@ class SearchBar extends React.Component {
     }
 
     handleChange = e => {
+        console.log(e.currentTarget.keyCode);
         this.setState({
             search: e.target.value
         });
@@ -39,9 +40,9 @@ class SearchBar extends React.Component {
     render(){
         return (
             <div className="search">
-               
+                    <img onClick={this.search} className="search-icon" src={Search} />
                     {this.state.searching ?<div className="searchInput">
-                    <input onSubmit={ (e) => {this.props.filterGuides(e, this.state.search)}}
+                    <input className="searchbar" onKeyPress={ (e) => {this.props.filterGuides(e, this.state.search)}}
                     type="text"
                     name="search"
                     onChange={ (e) => {this.handleChange(e)}}
@@ -50,7 +51,6 @@ class SearchBar extends React.Component {
                     <button onClick={ (e) => {this.props.filterGuides(e, this.state.search)}}>Search</button>
                     <button onClick={this.props.clearSearch} style={!this.props.isFiltered ? {display: 'none'} : {display: "block"}} >clear search</button>
                     </div> : ' '}
-                <img onClick={this.search} className="search-icon" src={Search} />
             </div>
         )
     }

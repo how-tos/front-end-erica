@@ -4,7 +4,7 @@ import {Route, Link} from "react-router-dom"
 import Navigation from './Navigation'
 import SearchBar from './SearchBar'
 
-class SavedGuides extends React.Component {
+class MyGuides extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -13,7 +13,7 @@ class SavedGuides extends React.Component {
             <div>
                 <Navigation />
                 <div className="secondary-header">
-                    <div className="title">Saved Guides</div>
+                    <div className="title">My Guides</div>
         </div> 
             </div>
             )
@@ -21,4 +21,4 @@ class SavedGuides extends React.Component {
     }
 }
 
-export default SavedGuides;
+export default MyGuides;
