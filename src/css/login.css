@@ -41,19 +41,20 @@ input{
 }
 
 .login {
-    margin-top: 30px;
+    margin-top: 40px;
     font-size: 14px;
-    border: 1px solid  #FF7800;
-    background-color:  #FF7800;
-    color:  white;
+    border: 1px solid  #666CFF;
+    background-color:  white;
+    color:  #666CFF;
     height: 40px;
     border-radius: 5px;
     width: 80%;
+    font-weight: bold;
 }
 
 .login:hover{ 
-    background-color: white;
-    color:  #FF7800;
+    background-color: #666CFF;
+    color:  white;
 }
 
 input:focus {
@@ -118,10 +119,26 @@ input:focus {
 }
 
 .register{
-    display: flex;
-    flex-direction: row;
-    font-size: 12px;
     margin-top: 15px;
+    font-size: 14px;
+    border: 1px solid  #FF7800;
+    background-color: white;
+    color:  #FF7800;
+    height: 40px;
+    border-radius: 5px;
+    width: 80%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register:hover{
+    background-color: #FF7800;
+    color:  white;
+}
+
+a {
+    text-decoration: none;
+    color: #FF7800;
 }
 
 .spacing{

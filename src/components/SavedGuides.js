@@ -7,7 +7,7 @@ class SavedGuides extends React.Component {
     render() {
     return (
         <div>
-            hello
+
             <Navigation />
         </div>
         )

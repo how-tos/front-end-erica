@@ -5,6 +5,8 @@ import {Route, Link} from "react-router-dom"
 import HowToList from "./components/HowToList"
 import AddHowTo from './components/AddHowTo'
 import Register from './components/Register'
+import SavedGuides from './components/SavedGuides'
+
 class App extends Component {
   constructor() {
     super()
@@ -28,6 +30,7 @@ class App extends Component {
     <Route path="/howTos" render={props => <HowToList {...props} /> } />
     <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
     <Route path = "/register" render = {props => <Register {...props} /> } />
+    <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />    
       </div>
     );
   }

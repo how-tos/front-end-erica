@@ -95,7 +95,8 @@ render() {
     return(
         <div>
              <Navigation />
-
+        <div className="secondary-header">
+            <div className="title">Browse Guides</div>
             <SearchBar 
                 HowTo={this.state.HowTos} 
                 filterGuides = {this.filterGuides} 
@@ -105,6 +106,7 @@ render() {
                 search = {this.state.search}
                 handleChange = {this.handleChange}
             />
+        </div> 
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <HowTo className="individualGuide"
@@ -119,9 +121,7 @@ render() {
                     name={howTo.name}
                 />))}
             </div>
-            <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
-            <Route path = "/register" render = {props => <Register {...props} /> } />
-            <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />      
+
         </div>
     )
     }
