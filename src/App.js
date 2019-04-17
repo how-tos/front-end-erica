@@ -24,7 +24,7 @@ class App extends Component {
         </nav> : <div>hello</div>} */}
   
 
-    <Route path="/" render={props => <Login {...props} /> } />
+    <Route exact path="/" render={props => <Login {...props} /> } />
     <Route path="/howTos" render={props => <HowToList {...props} /> } />
     <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
     <Route path = "/register" render = {props => <Register {...props} /> } />
