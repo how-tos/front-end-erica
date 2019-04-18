@@ -11,7 +11,7 @@ class SavedGuides extends React.Component {
     render() {
         return (
             <div>
-                <Navigation />
+                <Navigation createPost={this.props.createPost}/>
                 <div className="secondary-header">
                     <div className="title">Saved Guides</div>
                 </div> 

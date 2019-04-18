@@ -4,7 +4,7 @@ import '../css/newGuide.css'
 import NewStep from './NewStep'
 import axiosWithHeaders from "./utils/headers";
 import ImageUploader from './ImageUploader';
-
+import cancel from '../img/cross_icon.png'
 // import { FilePond, registerPlugin } from "react-filepond";
 
 class AddHowTo extends React.Component {
@@ -32,19 +32,19 @@ class AddHowTo extends React.Component {
         const { authorID, title, tags } = this.state;
         e.preventDefault();
         console.log("submitted", this.props.userID);
-        const newHowTo = {
-            authorID,
-            title,
-            tags,
-        };
+        // const newHowTo = {
+        //     authorID,
+        //     title,
+        //     tags,
+        // };
 
+                
         axiosWithHeaders()
-            .post("https://how-to-lambda.herokuapp.com/api/how-to/", newHowTo)
-            .then(res => {
-                this.props.history.push("/howTos");
-            })
-            .catch(err=>console.log(err.response));
-
+        .put("https://how-to-lambda.herokuapp.com/api/how-to/:id")
+        .then(res => {
+            this.props.history.push("/howTos");
+        })
+        .catch(err=>console.log(err.response));
     }
 
     newStep = (e, step) =>{
@@ -64,14 +64,22 @@ class AddHowTo extends React.Component {
             .catch(err => console.log(err.response));
     }
 
+    cancelCreate = () => {
+        console.log("Delete")
+
+        axiosWithHeaders() 
+            .delete("https://how-to-lambda.herokuapp.com/api/how-to/:howToID")
+            .catch(err => console.log(err.response));
+    }
 
 
 render() {
     return ( 
         <div>
             <Navigation />
-            <div className="secondary-header">
+            <div className="secondary-header-create">
                     <div className="title">Create Guide</div>
+                    <img className="cancel-create" src={cancel} onClick={this.cancelCreate}/>
             </div> 
             <div className="label">Cover Image</div>
             <div className="uploader"><ImageUploader /></div>
@@ -101,17 +109,17 @@ render() {
                 {/* {this.state.steps.map (step => (
                     <div>{step.title}</div>
                 ))} */}
-                <input
+                {/* <input
                     type="text"
                     name="step"
                     onChange={this.handleChange}
                     value={this.state.step}
                     placeholder="New Step"
-                />
+                /> */}
                 <NewStep newStep={this.newStep} step={this.state.step}/>
                 
                 {/* <button onClick={this.newStep}>New Step</button> */}
-                <button onClick={this.handleSubmit}>Add</button>
+                <button className="addStep" onClick={this.handleSubmit}>Add</button>
                 </form>
                
             </div>

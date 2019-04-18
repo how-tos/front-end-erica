@@ -20,7 +20,7 @@ class NewStep extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className ="step-input">
                 <input
                 className = "step"
                 type="text"
@@ -31,7 +31,7 @@ class NewStep extends React.Component {
                 />
 
                 <input
-                className = "step"
+                className = "step-description"
                 type="text"
                 name="text"
                 onChange={this.handleChange}
@@ -39,7 +39,7 @@ class NewStep extends React.Component {
                 placeholder="description"
                 />
 
-                <button onClick={ (e) => {this.props.newStep(e, this.state)}}>New Step</button>
+                {/* <button onClick={ (e) => {this.props.newStep(e, this.state)}}>New Step</button> */}
             </div>
         )
     }

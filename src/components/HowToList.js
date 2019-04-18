@@ -141,7 +141,7 @@ render() {
 
     return(
         <div>
-             <Navigation />
+             <Navigation createPost={this.props.createPost}/>
              {!this.state.isSelected ? <div>
         <div className="secondary-header">
             <div className="title">Browse Guides</div>
