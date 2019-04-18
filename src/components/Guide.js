@@ -3,6 +3,7 @@ import '../css/guide.css'
 import HeartIcon from '../img/heart_outline.svg'
 import RedHeart from '../img/red_heart.png'
 import gardening from '../img/gardening.jpeg'
+import Back from '../img/back.png'
 
 
 class Guide extends React.Component {
@@ -34,18 +35,21 @@ class Guide extends React.Component {
     render() {
         return (
             <div className="guide">      
-                test2 
-                    <img className="guide-cover" src={gardening}/>
-                    <div className="guide-information">
-                        <div className="guide-title-like">
-                            <p>{this.props.name}</p>
-                            <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
-                        </div>      
-
-                        {/* <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div> */}
-                        
+                
+                <div className="secondary-header-guide">
+                    <div className="title-back">
+                        <img onClick={this.props.clearSelected} className="back" src={Back}/>
+                        <div className="title">{this.props.name}</div>
                     </div>
-            
+                    <img className="heart-icon-guide"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
+                </div> 
+                <div className="medicinePills-guide">{this.props.tags.map(tag => (<div className="pill-guide">{tag}</div>))}</div>
+                <div className="image-wrapper"><img className="guide-cover" src={gardening}/></div>
+                <div className="steps">{this.props.steps.map(step=> (
+                    <div>{step.title}
+                {step.text} </div>)
+                )}
+                    </div>
             </div> 
         )
     }

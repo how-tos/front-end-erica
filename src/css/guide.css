@@ -1,3 +1,64 @@
 .guide{
-    max-width: 900px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-cover{
+    width: 100%;
+}
+
+.guide-information{
+    position: absolute;
+    z-index: 1; 
+}
+
+.image-wrapper{
+    max-height: 300px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgb(247, 247, 247);
+}
+
+.secondary-header-guide{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+
+}
+
+.heart-icon-guide{
+    height: 20px;
+    padding-top: 10px;
+}
+
+.medicinePills-guide{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.pill-guide{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    background-color: #FFAE66;
+    padding: 5px 10px;
+    border-radius: 100px;
+    color: white;
+}
+
+.back{
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.title-back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

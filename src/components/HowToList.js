@@ -21,8 +21,8 @@ class HowToList extends React.Component {
             search: '',
             allTags: props.allTags,
             images: [gardening, gardening2, woodworking],
-            selectedId: '5cb7a41fe5e0ad09be692439',
-            isSelected: true, 
+            selectedId: '',
+            isSelected: false, 
         }
     }
     
@@ -113,6 +113,13 @@ class HowToList extends React.Component {
         })
     }
 
+    clearSelected = () => {
+        this.setState({
+            selectedId: '',
+            isSelected: false, 
+        })
+    }
+
 render() {
     if(!localStorage.getItem("token")) {
         return <h1>You are not an authorized user. Please log in again</h1>;
@@ -121,6 +128,7 @@ render() {
     return(
         <div>
              <Navigation />
+             {!this.state.isSelected ? <div>
         <div className="secondary-header">
             <div className="title">Browse Guides</div>
             <SearchBar 
@@ -133,7 +141,7 @@ render() {
                 handleChange = {this.handleChange}
             />
         </div> 
-            {!this.state.isSelected ? 
+
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <div className = "listofGuides" onClick={this.selected(howTo._id)}><HowTo className="individualGuide"
@@ -152,9 +160,13 @@ render() {
                 /></div>)}
                 
             </div>
+            </div>
             : this.state.HowTos.filter(howTo => howTo._id === this.state.selectedId).map(object => 
                 <Guide 
+                clearSelected = {this.clearSelected}
                 name = {object.title}
+                tags = {object.tags}
+                steps = {object.steps}
                 />)
 
             } 
