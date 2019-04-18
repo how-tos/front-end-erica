@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import '../css/howto.css'
+import '../css/guide.css'
 import HeartIcon from '../img/heart_outline.svg'
 import RedHeart from '../img/red_heart.png'
 import gardening from '../img/gardening.jpeg'
-import Navigation from './Navigation'
 
-class HowTo extends React.Component {
+
+class Guide extends React.Component {
     constructor (props) {
         super(props)
         this.state={
-            isSaved: false,
-            saved: false,
-            savedGuides: [], 
+
         }
     }
 
@@ -35,21 +33,22 @@ class HowTo extends React.Component {
 
     render() {
         return (
-                <div className="Howto">
-                    <img className="cover" src={gardening}/>
-                    <div className="information">
-                        <div className="title-like">
+            <div className="guide">      
+                test2 
+                    <img className="guide-cover" src={gardening}/>
+                    <div className="guide-information">
+                        <div className="guide-title-like">
                             <p>{this.props.name}</p>
                             <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
                         </div>      
 
-                        <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div>
+                        {/* <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div> */}
                         
                     </div>
-                
-            </div>
+            
+            </div> 
         )
     }
 }
 
-export default HowTo;
+export default Guide;

@@ -7,8 +7,8 @@ import axiosWithHeaders from './utils/headers';
 import gardening from '../img/gardening.jpeg';
 import gardening2 from '../img/gardening2.jpeg';
 import woodworking from '../img/woodworking.jpeg';
-import {Link} from 'react-router-dom';
-
+import {Link, Route} from 'react-router-dom';
+import Guide from './Guide'
 
 class HowToList extends React.Component {
     constructor(props) {
@@ -20,7 +20,9 @@ class HowToList extends React.Component {
             isFiltered: false,
             search: '',
             allTags: props.allTags,
-            images: [gardening, gardening2, woodworking]
+            images: [gardening, gardening2, woodworking],
+            selectedId: '5cb7a41fe5e0ad09be692439',
+            isSelected: true, 
         }
     }
     
@@ -44,7 +46,7 @@ class HowToList extends React.Component {
                 const LowerCase = guide.title.toLowerCase()
                 // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
                 const tags = guide.tags;
-
+                
                 if (LowerCase.indexOf(search) > -1) {
                     newArray.push(guide);
                 }
@@ -100,6 +102,15 @@ class HowToList extends React.Component {
                 allTags: [...new Set(arrayTags)],
             })
         })
+
+    }
+
+    selected = (id) => {
+        console.log(id);
+        this.setState({
+            selectedId: id,
+            isSelected: true,
+        })
     }
 
 render() {
@@ -122,26 +133,32 @@ render() {
                 handleChange = {this.handleChange}
             />
         </div> 
+            {!this.state.isSelected ? 
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
-                    <HowTo className="individualGuide"
+                    <div className = "listofGuides" onClick={this.selected(howTo._id)}><HowTo className="individualGuide"
                         key={howTo._id}
                         HowTo={howTo}
                         name={howTo.title}
                         tags={howTo.tags}
-                    />)) :
+                    /></div>)) :
                     this.state.HowTos.map(howTo => 
-                <Link className="listofGuides" to = "/guide"><HowTo className="individualGuide"
+                        <div className = "listofGuides" onClick={(e) => this.selected(howTo._id)}><HowTo className="individualGuide"
                     key={howTo._id}
                     HowTo={howTo}
                     name={howTo.title}
                     tags={howTo.tags}
                     steps={howTo.steps}
-                    
-                /></Link>
-                )}
+                /></div>)}
+                
             </div>
+            : this.state.HowTos.filter(howTo => howTo._id === this.state.selectedId).map(object => 
+                <Guide 
+                name = {object.title}
+                />)
 
+            } 
+            
         </div>
     )
     }

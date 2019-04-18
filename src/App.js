@@ -50,7 +50,6 @@ class App extends Component {
     <Route path = "/register" render = {props => <Register {...props} /> } />
     <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />    
     <Route path ="/myGuides" render = {props => <MyGuides {...props} /> } />
-    <Route path ="/guide" render = {props => <HowTo {...props} /> } />
       </div>
     );
   }
