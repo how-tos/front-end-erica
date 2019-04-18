@@ -13,10 +13,19 @@ class App extends Component {
     super()
     this.state = {
       isLoggedIn: false,
+      userID: '', 
     }
   }
 
+  setId = (id) => {
+    this.setState({
+      userID: id,
+    })
+    console.log(this.state.userID)
+  }
+
   render() {
+    console.log(this.state.userID);
     console.log(this.state.isLoggedIn)
     return (
       <div className="App">
@@ -27,8 +36,8 @@ class App extends Component {
         </nav> : <div>hello</div>} */}
   
 
-    <Route exact path="/" render={props => <Login {...props} /> } />
-    <Route path="/howTos" render={props => <HowToList {...props} /> } />
+    <Route exact path="/" render={props => <Login {...props} setId = {this.setId}/> } />
+    <Route path="/howTos" render={props => <HowToList {...props} userID = {this.state.userID} /> } />
     <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
     <Route path = "/register" render = {props => <Register {...props} /> } />
     <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />    

@@ -11,7 +11,7 @@ class Login extends React.Component {
             username: "",
             password: "",
             isLoggedIn: props.isLoggedIn,
-            id: '', 
+            id: props.userID,
           };
     }
 
@@ -35,8 +35,8 @@ class Login extends React.Component {
       .then(res => {
         // save it to localStorage
         const token = res.data.payload;
-        const id = res.data._id;
-        console.log(res.data._id)
+        const id = res.data.userID;
+        console.log(res.data.userID)
         localStorage.setItem("token", token);
         this.props.history.push("/howTos");
         this.setState ({
@@ -44,9 +44,12 @@ class Login extends React.Component {
             id: id, 
         })
         console.log(this.state.id)
+        this.props.setId(res.data.userID);
       })
       .catch(err => console.log(err.response));
   };
+
+
   render() {
     
     return (

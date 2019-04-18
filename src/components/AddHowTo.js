@@ -3,16 +3,21 @@ import Navigation from './Navigation'
 import '../css/newGuide.css'
 import NewStep from './NewStep'
 import axiosWithHeaders from "./utils/headers";
+import ImageUploader from './ImageUploader';
+
+// import { FilePond, registerPlugin } from "react-filepond";
 
 class AddHowTo extends React.Component {
-    state={
-        authorID: localStorage.getItem("token"),
-        title: "",
-        tags: [],
-        steps: [], 
-        step: '',
+    constructor(props) {
+        super(props)
+        this.state = {
+            authorID: props.userID,
+            title: "",
+            tags: [],
+            steps: [], 
+            step: '',
+        }
     }
-
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -20,9 +25,14 @@ class AddHowTo extends React.Component {
     };
 
     handleSubmit = e => {
+        const { authorID, title, tags } = this.state;
         e.preventDefault();
-        console.log("submitted")
-        const newHowTo = this.state; 
+        console.log("submitted", authorID);
+        const newHowTo = {
+            authorID,
+            title,
+            tags,
+        };
 
         axiosWithHeaders()
             .post("https://how-to-lambda.herokuapp.com/api/how-to/", newHowTo)
@@ -76,7 +86,9 @@ render() {
                 <button onClick={this.newStep}>New Step</button>
                 <button onClick={this.handleSubmit}>Add</button>
                 </form>
+               
             </div>
+            <ImageUploader />
       </div>
     )
     }

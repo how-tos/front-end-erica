@@ -29,7 +29,7 @@ class Login extends React.Component {
         // save it to localStorage
         const token = res.data.payload;
         localStorage.setItem("token", token);
-        this.props.history.push("/howTos");
+        this.props.history.push("/");
       })
 
       .catch(err => console.log(err.response));
@@ -41,6 +41,7 @@ class Login extends React.Component {
     //       localStorage.setItem("token", token);
     //       this.props.history.push('/howTos')
     //   })
+
       };
 
     

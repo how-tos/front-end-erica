@@ -11,11 +11,10 @@ class SearchBar extends React.Component {
         isFiltered: props.isFiltered,
         HowTo: props.HowTo,
         searching: false,
-    }
+        }
     }
 
     handleChange = e => {
-        console.log(e.currentTarget.keyCode);
         this.setState({
             search: e.target.value
         });
