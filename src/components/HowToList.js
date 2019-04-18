@@ -4,35 +4,25 @@ import SearchBar from './SearchBar'
 import Navigation from './Navigation'
 import '../css/howto.css'
 import axiosWithHeaders from './utils/headers';
+import gardening from '../img/gardening.jpeg';
+import gardening2 from '../img/gardening2.jpeg';
+import woodworking from '../img/woodworking.jpeg';
 
 
 class HowToList extends React.Component {
-    state = {
-        HowTos: [
-            // {name: "Guide 1",
-            // tag: ["Home", "garden"],
-            // id: 1}, 
-            // {name: "Guide 2",
-            // tag: ["baking", "cooking"],
-            // id: 2}, 
-            // {name: "Guide 3: home cooking",
-            // tag: ["home", "Cooking"],
-            // id: 3},
-            // {name: "Guide 4: home cooking",
-            // tag: ["home", "Cooking"],
-            // id: 4},
-            // {name: "Guide 4: home cooking",
-            // tag: ["home", "Cooking"],
-            // id: 5},
-            // {name: "Guide 4: home cooking",
-            // tag: ["home", "Cooking"],
-            // id: 6}
-        ],
-        isLoggedIn: true,
-        filteredList: [],
-        isFiltered: false,
-        search: '',
+    constructor(props) {
+        super(props) 
+        this.state = {
+            HowTos: [],
+            isLoggedIn: true,
+            filteredList: [],
+            isFiltered: false,
+            search: '',
+            allTags: props.allTags,
+            images: [gardening, gardening2, woodworking]
+        }
     }
+    
 
     componentDidMount() {
         axiosWithHeaders()
@@ -50,15 +40,15 @@ class HowToList extends React.Component {
             let newArray = [];
             console.log(this.state.HowTos)
             this.state.HowTos.map(guide => {
-                const LowerCase = guide.name.toLowerCase()
+                const LowerCase = guide.title.toLowerCase()
                 // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
-                const tags = guide.tag;
+                const tags = guide.tags;
 
                 if (LowerCase.indexOf(search) > -1) {
                     newArray.push(guide);
                 }
                 else {
-                    for (let i = 0; i<guide.tag.length; i++) {
+                    for (let i = 0; i<guide.tags.length; i++) {
                         if (tags[i].toLowerCase().indexOf(search)> -1) {
                             newArray.push(guide);
                         }
@@ -66,7 +56,7 @@ class HowToList extends React.Component {
                 }
             }
             )
-
+            this.getTags();            
             this.setState({
                 filteredList: newArray,
                 isFiltered: true,
@@ -75,6 +65,7 @@ class HowToList extends React.Component {
             return false;
         }
         return true;
+        
     }
 
     clearSearch = e => {
@@ -97,6 +88,18 @@ class HowToList extends React.Component {
         });
     }
 
+    getTags = () => {
+        let arrayTags = [];
+        this.state.HowTos.map(guide => {
+            let tags = guide.tags;
+            arrayTags = arrayTags.concat(tags); 
+            console.log([...new Set(arrayTags)]);
+            console.log(this.state.allTags);
+            this.setState({
+                allTags: [...new Set(arrayTags)],
+            })
+        })
+    }
 
 render() {
     if(!localStorage.getItem("token")) {
@@ -121,18 +124,20 @@ render() {
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
                     <HowTo className="individualGuide"
-                        key={howTo.id}
+                        key={howTo._id}
                         HowTo={howTo}
-                        name={howTo.name}
+                        name={howTo.title}
+                        tags={howTo.tags}
                     />)) :
-                    this.state.HowTos.map(howTo => (
+                    this.state.HowTos.map(howTo => 
                 <HowTo className="individualGuide"
-                    key={howTo.id}
+                    key={howTo._id}
                     HowTo={howTo}
                     name={howTo.title}
                     tags={howTo.tags}
                     steps={howTo.steps}
-                />))}
+                    
+                />)}
             </div>
 
         </div>

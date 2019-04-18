@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from '../img/search.png';
 import '../css/Search.css';
+import cross from '../img/cross_icon.png'
 
 class SearchBar extends React.Component { 
     constructor(props) {
@@ -47,8 +48,7 @@ class SearchBar extends React.Component {
                     onChange={ (e) => {this.handleChange(e)}}
                     value={this.state.search}
                     />
-                    <button onClick={ (e) => {this.props.filterGuides(e, this.state.search)}}>Search</button>
-                    <button onClick={this.props.clearSearch} style={!this.props.isFiltered ? {display: 'none'} : {display: "block"}} >clear search</button>
+                    <img src={cross} className="clear" onClick={this.props.clearSearch} style={!this.props.isFiltered ? {display: 'none'} : {display: "block"}} />
                     </div> : ' '}
             </div>
         )

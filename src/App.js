@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       userID: '', 
+      allTags: [],
     }
   }
 
@@ -23,6 +24,12 @@ class App extends Component {
     })
     console.log(this.state.userID)
   }
+
+  // getTags = ([tags]) => {
+  //   this.setState({
+  //     allTags: tags,
+  //   })
+  // }
 
   render() {
     console.log(this.state.userID);
@@ -37,8 +44,8 @@ class App extends Component {
   
 
     <Route exact path="/" render={props => <Login {...props} setId = {this.setId}/> } />
-    <Route path="/howTos" render={props => <HowToList {...props} userID = {this.state.userID} /> } />
-    <Route path="/addHowTo" render = {props => <AddHowTo {...props} /> } /> 
+    <Route path="/howTos" render={props => <HowToList {...props}  allTags={this.state.allTags} /> } />
+    <Route path="/addHowTo" render = {props => <AddHowTo {...props} userID = {this.state.userID} /> } /> 
     <Route path = "/register" render = {props => <Register {...props} /> } />
     <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />    
     <Route path ="/myGuides" render = {props => <MyGuides {...props} /> } />

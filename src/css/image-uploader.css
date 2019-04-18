@@ -1,0 +1,16 @@
+
+.filepond--panel-root {
+    border-radius: 0.2em;
+}
+
+.filepond--item-panel {
+    border-radius: 0.2em;
+}
+
+.filepond--item-panel {
+    background-color: white;
+}
+
+.filepond--drip-blob {
+    background-color: #FF7800;
+}

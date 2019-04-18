@@ -21,3 +21,12 @@
     flex-direction: row;
     height: 30px;
 }
+
+.clear {
+    background-color: none;
+    border: none;
+    width: 20px;
+    height: 20px;
+
+    padding-top: 3px;
+}

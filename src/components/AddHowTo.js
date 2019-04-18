@@ -27,7 +27,7 @@ class AddHowTo extends React.Component {
     handleSubmit = e => {
         const { authorID, title, tags } = this.state;
         e.preventDefault();
-        console.log("submitted", authorID);
+        console.log("submitted", this.props.userID);
         const newHowTo = {
             authorID,
             title,
@@ -37,7 +37,7 @@ class AddHowTo extends React.Component {
         axiosWithHeaders()
             .post("https://how-to-lambda.herokuapp.com/api/how-to/", newHowTo)
             .then(res => {
-                this.props.history.push("/how-to");
+                this.props.history.push("/howTos");
             })
             .catch(err=>console.log(err.response));
 
@@ -60,9 +60,11 @@ render() {
             <div className="secondary-header">
                     <div className="title">Create Guide</div>
             </div> 
-            
+            <div className="label">Cover Image</div>
+            <div className="uploader"><ImageUploader /></div>
             <div className="guideForm">
                 <form className="guideForm" onSubmit={this.handleSubmit}>
+                <div className="label">Guide Title</div>
                 <input 
                     className = "newGuide"
                     type="text"
@@ -71,14 +73,18 @@ render() {
                     value={this.state.title}
                     placeholder="title"
                 />
-                <input
-                    className = "newGuide"
-                    type="text"
-                    name="tags"
-                    onChange={this.handleChange}
-                    value={this.state.tags}
-                    placeholder="tags"
-                />
+                <div className="tags">
+                    <div className="label">Tags</div>
+                    <input
+                        className = "tag-input"
+                        type="text"
+                        name="tags"
+                        onChange={this.handleChange}
+                        value={this.state.tags}
+                        placeholder="tags"
+                    />
+                </div>
+                <div className="label">Steps</div>
                 {this.state.steps.map (step => (
                     <NewStep step={step} />
                 ))}
@@ -88,7 +94,7 @@ render() {
                 </form>
                
             </div>
-            <ImageUploader />
+            
       </div>
     )
     }

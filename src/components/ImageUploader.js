@@ -10,6 +10,7 @@ import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import '../css/image-uploader.css';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -22,14 +23,7 @@ class ImageUploader extends React.Component {
     this.state = {
       // Set initial files, type 'local' means this is a file
       // that has already been uploaded to the server (see docs)
-      files: [
-        {
-          source: "index.html",
-          options: {
-            type: "local"
-          }
-        }
-      ]
+      files: []
     };
   }
 
@@ -42,11 +36,12 @@ class ImageUploader extends React.Component {
       <div className="App">
         {/* Pass FilePond properties as attributes */}
         <FilePond
+          style={{width: '50px'}}
           ref={ref => (this.pond = ref)}
           files={this.state.files}
           allowMultiple={true}
           maxFiles={3}
-          server="/api"
+          server="/api/"
           oninit={() => this.handleInit()}
           onupdatefiles={fileItems => {
             // Set currently active file objects to this.state

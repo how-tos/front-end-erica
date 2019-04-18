@@ -6,6 +6,10 @@
     width: 31%;
     margin: 10px;
     box-shadow: 0px 0px 10px rgb(230, 228, 228);
+    overflow-y: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 /* .Howto:nth-child(odd){
@@ -20,6 +24,38 @@
     width: 34%;
 } */
 
+.information{
+    z-index: 5;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    padding-top: 50px;
+    background: linear-gradient(to top, rgba(255,255,255,1) 30%,rgba(255,255,255,0) 100%);
+    color: black;
+}
+
+.medicinePills{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.pill{
+    margin: 10px 10px;
+    font-size: 12px;
+    background-color: #FFAE66;
+    padding: 5px 10px;
+    border-radius: 100px;
+    color: white;
+}
+
+.cover { 
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    position: absolute;
+}
 
 .list{
     display: flex;
