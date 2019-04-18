@@ -23,7 +23,7 @@ class HowToList extends React.Component {
             images: [gardening, gardening2, woodworking],
             selectedId: '',
             isSelected: false, 
-            selectedGuide: [],
+            // selectedGuide: [],
         }
     }
     
@@ -120,6 +120,7 @@ class HowToList extends React.Component {
         //         })
         //     })
         //     .catch(err => console.log(err.response))
+        this.props.getSelectedId(id);
 
     }
 
@@ -185,6 +186,7 @@ render() {
                 savedGuides = {this.props.savedGuides}
                 setSave = {this.setSave}
                 userID = {this.props.userID}
+                selectedId = {this.state.selectedId}
                 />)
 
             } 
@@ -195,3 +197,4 @@ render() {
 }
 
 export default HowToList;
+

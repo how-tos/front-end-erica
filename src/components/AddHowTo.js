@@ -14,12 +14,12 @@ class AddHowTo extends React.Component {
             authorID: props.userID,
             title: "",
             tags: [],
-            steps: {
-                title: '',
-                text: '',
-                id: '',
-            }, 
-            step: '',
+            // steps: {
+            //     title: '',
+            //     text: '',
+            //     id: '',
+            // }, 
+            // step: '',
         }
     }
     handleChange = e => {
@@ -37,10 +37,10 @@ class AddHowTo extends React.Component {
         //     title,
         //     tags,
         // };
-
+        const newStep = this.state;
                 
         axiosWithHeaders()
-        .put("https://how-to-lambda.herokuapp.com/api/how-to/:id")
+        .post (`https://how-to-lambda.herokuapp.com/api/how-to/`, newStep)
         .then(res => {
             this.props.history.push("/howTos");
         })
@@ -59,7 +59,7 @@ class AddHowTo extends React.Component {
         // this.setState({steps:item});
 
         axiosWithHeaders()
-            .post("https://how-to-lambda.herokuapp.com/api/how-to/:howToID/steps", step)
+            .post(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedPostId}/steps`, step)
             .then(res => {console.log(res)})
             .catch(err => console.log(err.response));
     }
@@ -68,7 +68,7 @@ class AddHowTo extends React.Component {
         console.log("Delete")
 
         axiosWithHeaders() 
-            .delete("https://how-to-lambda.herokuapp.com/api/how-to/:howToID")
+            .delete(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedPostId}`)
             .catch(err => console.log(err.response));
     }
 

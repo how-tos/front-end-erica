@@ -52,6 +52,24 @@ class Guide extends React.Component {
         
     }
 
+
+    deletePost = () => {
+        console.log("deleting post")
+
+        axiosWithHeaders() 
+            .delete(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedId}`)
+            .then(res => {
+                console.log(res);
+
+
+                // if(status == '204') {
+                //     this.props.history.push('/howTos');
+                // }
+            })
+            .catch(err => console.log(err.response));
+            
+    }
+
    
 
     render() {
@@ -63,6 +81,7 @@ class Guide extends React.Component {
                         <img onClick={this.props.clearSelected} className="back" src={Back}/>
                         <div className="title">{this.props.name}</div>
                     </div>
+                    <button onClick={this.deletePost}>delete</button>
                     <img className="heart-icon-guide"  onClick ={(e) => this.save(e, this.props.id)} src={!this.state.isSaved ? HeartIcon : RedHeart} />
                 </div> 
                 <div className="medicinePills-guide">{this.props.tags.map(tag => (<div className="pill-guide">{tag}</div>))}</div>

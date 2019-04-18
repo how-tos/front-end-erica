@@ -14,10 +14,11 @@ class App extends Component {
     super()
     this.state = {
       isLoggedIn: false,
-      authorID: '', 
+      authorID: '5cb7bb2968097b001712b693', 
       allTags: [],
       savedGuides: [],
       newHowTo: [],
+      selectedPostId: '',
     }
   }
 
@@ -42,21 +43,28 @@ class App extends Component {
   //   })
   // }
 
-  createPost = () => {
-    console.log("post created")
-    console.log(this.state.authorID)
-    const id = {authorID: this.state.authorID};
-    axiosWithHeaders()
-    .post("https://how-to-lambda.herokuapp.com/api/how-to/", id)
-    .then(res => {
-        console.log(res.data);
-        this.setState({
-          newHowTo: res.data,
-        })
+  getSelectedId = (id) => {
+    console.log(id)
+    this.setState({
+      selectedPostId: id,
     })
-    .catch(err =>console.log(err.response));
-
   }
+
+  // createPost = () => {
+  //   console.log("post created")
+  //   console.log(this.state.authorID)
+  //   const id = {authorID: this.state.authorID};
+  //   axiosWithHeaders()
+  //   .post("https://how-to-lambda.herokuapp.com/api/how-to/", id)
+  //   .then(res => {
+  //       console.log(res.data);
+  //       this.setState({
+  //         newHowTo: res.data,
+  //       })
+  //   })
+  //   .catch(err =>console.log(err.response));
+
+  // }
 
   render() {
     console.log(this.state.isLoggedIn)
@@ -77,11 +85,13 @@ class App extends Component {
       allTags={this.state.allTags} 
       getSavedId={this.getSavedId} 
       savedGuides={this.state.savedGuides} 
+      getSelectedId={this.getSelectedId}
     /> } />
 
     <Route path="/addHowTo" render = {props => <AddHowTo {...props} 
       userID = {this.state.authorID}
       newHowTo = {this.state.newHowTo}
+      selectedPostId = {this.state.selectedPostId}
     /> } /> 
 
     <Route path = "/register" render = {props => <Register {...props} /> } />
