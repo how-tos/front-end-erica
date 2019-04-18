@@ -37,6 +37,7 @@ class HowTo extends React.Component {
             <div className="Howto">
                 <div className ="guideName">{this.props.name}</div>
                 <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
+                {this.props.tags.map(tag => (<div>{tag}</div>))}
             </div>
         )
     }

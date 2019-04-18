@@ -129,7 +129,9 @@ render() {
                 <HowTo className="individualGuide"
                     key={howTo.id}
                     HowTo={howTo}
-                    name={howTo.name}
+                    name={howTo.title}
+                    tags={howTo.tags}
+                    steps={howTo.steps}
                 />))}
             </div>
 

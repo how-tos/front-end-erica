@@ -2,8 +2,11 @@ import React from 'react';
 import Navigation from './Navigation'
 import '../css/newGuide.css'
 import NewStep from './NewStep'
+import axiosWithHeaders from "./utils/headers";
+
 class AddHowTo extends React.Component {
     state={
+        authorID: localStorage.getItem("token"),
         title: "",
         tags: [],
         steps: [], 
@@ -20,6 +23,13 @@ class AddHowTo extends React.Component {
         e.preventDefault();
         console.log("submitted")
         const newHowTo = this.state; 
+
+        axiosWithHeaders()
+            .post("https://how-to-lambda.herokuapp.com/api/how-to/", newHowTo)
+            .then(res => {
+                this.props.history.push("/how-to");
+            })
+            .catch(err=>console.log(err.response));
 
     }
 
