@@ -14,7 +14,8 @@ class SavedGuides extends React.Component {
                 <Navigation />
                 <div className="secondary-header">
                     <div className="title">Saved Guides</div>
-        </div> 
+                </div> 
+                {this.props.savedGuides.map(guide => <div>{guide}</div>)}
             </div>
             )
 

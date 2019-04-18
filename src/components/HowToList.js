@@ -23,6 +23,7 @@ class HowToList extends React.Component {
             images: [gardening, gardening2, woodworking],
             selectedId: '',
             isSelected: false, 
+            selectedGuide: [],
         }
     }
     
@@ -111,6 +112,15 @@ class HowToList extends React.Component {
             selectedId: id,
             isSelected: true,
         })
+        // axiosWithHeaders()
+        //     .get("https://how-to-lambda.herokuapp.com/api/how-to/:id")
+        //     .then(res => {
+        //         this.setState({
+        //             selectedGuide: res.data,
+        //         })
+        //     })
+        //     .catch(err => console.log(err.response))
+
     }
 
     clearSelected = () => {
@@ -118,6 +128,10 @@ class HowToList extends React.Component {
             selectedId: '',
             isSelected: false, 
         })
+    }
+
+    setSave = (id) => {
+        this.props.getSavedId(id)
     }
 
 render() {
@@ -167,6 +181,10 @@ render() {
                 name = {object.title}
                 tags = {object.tags}
                 steps = {object.steps}
+                id = {object._id}
+                savedGuides = {this.props.savedGuides}
+                setSave = {this.setSave}
+                userID = {this.props.userID}
                 />)
 
             } 

@@ -16,22 +16,23 @@ class HowTo extends React.Component {
     }
 
 
-    save = (e) => {
-        e.preventDefault();
-        let saved = this.state.isSaved;
-        console.log(saved);
-        if(saved){
-            this.setState({
-                isSaved: !this.state.saved,
-                saved: !this.state.saved,
-            })
-        } else{
-            this.setState({
-                isSaved: !this.state.saved,
-                saved: !this.state.saved,
-            })
-        }
-    }
+    // save = (e) => {
+    //     e.preventDefault();
+    //     console.log(id)
+    //     let saved = this.state.isSaved;
+    //     console.log(saved);
+    //     if(saved){
+    //         this.setState({
+    //             isSaved: !this.state.saved,
+    //             saved: !this.state.saved,
+    //         })
+    //     } else{
+    //         this.setState({
+    //             isSaved: !this.state.saved,
+    //             saved: !this.state.saved,
+    //         })
+    //     }
+    // }
 
     render() {
         return (
@@ -40,7 +41,7 @@ class HowTo extends React.Component {
                     <div className="information">
                         <div className="title-like">
                             <p>{this.props.name}</p>
-                            <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
+                            {/* <img className="heart-icon"  onClick ={(e) => this.save(e, this.props.key)} src={!this.state.isSaved ? HeartIcon : RedHeart} /> */}
                         </div>      
 
                         <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div>
