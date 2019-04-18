@@ -7,6 +7,7 @@ import axiosWithHeaders from './utils/headers';
 import gardening from '../img/gardening.jpeg';
 import gardening2 from '../img/gardening2.jpeg';
 import woodworking from '../img/woodworking.jpeg';
+import {Link} from 'react-router-dom';
 
 
 class HowToList extends React.Component {
@@ -130,14 +131,15 @@ render() {
                         tags={howTo.tags}
                     />)) :
                     this.state.HowTos.map(howTo => 
-                <HowTo className="individualGuide"
+                <Link className="listofGuides" to = "/guide"><HowTo className="individualGuide"
                     key={howTo._id}
                     HowTo={howTo}
                     name={howTo.title}
                     tags={howTo.tags}
                     steps={howTo.steps}
                     
-                />)}
+                /></Link>
+                )}
             </div>
 
         </div>

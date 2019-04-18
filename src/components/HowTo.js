@@ -11,8 +11,10 @@ class HowTo extends React.Component {
             isSaved: false,
             saved: false,
             savedGuides: [], 
+            tags: props.tags,
         }
     }
+
 
     save = (e) => {
         e.preventDefault();
@@ -33,15 +35,16 @@ class HowTo extends React.Component {
 
     render() {
         return (
-
             <div className="Howto">
                 <img className="cover" src={gardening}/>
                 <div className="information">
-                    <div className ="guideName">{this.props.name}</div>
-                    <div className="tags-and-pills">
+                    <div className="title-like">
+                        <p>{this.props.name}</p>
                         <img className="heart-icon"  onClick ={this.save} src={!this.state.isSaved ? HeartIcon : RedHeart} />
-                        <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div>
-                    </div>
+                    </div>      
+
+                    <div className="medicinePills">{this.props.tags.map(tag => (<div className="pill">{tag}</div>))}</div>
+                    
                 </div>
             </div>
         )

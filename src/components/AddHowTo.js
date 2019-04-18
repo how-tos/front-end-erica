@@ -14,7 +14,11 @@ class AddHowTo extends React.Component {
             authorID: props.userID,
             title: "",
             tags: [],
-            steps: [], 
+            steps: {
+                title: '',
+                text: '',
+                id: '',
+            }, 
             step: '',
         }
     }
@@ -43,14 +47,23 @@ class AddHowTo extends React.Component {
 
     }
 
-    newStep = e =>{
+    newStep = (e, step) =>{
+        const newStep = this.state.steps; 
         e.preventDefault();
         console.log("New Step")
-        const item = this.state.steps;
-        item.push('hello')
-        this.setState({steps:item});
-        
+        this.setState({
+            steps: (newStep, step),
+        })
+        // const item = this.state.steps;
+        // item.push('hello')
+        // this.setState({steps:item});
+
+        axiosWithHeaders()
+            .post("https://how-to-lambda.herokuapp.com/api/how-to/:howToID/steps", step)
+            .then(res => {console.log(res)})
+            .catch(err => console.log(err.response));
     }
+
 
 
 render() {
@@ -85,11 +98,19 @@ render() {
                     />
                 </div>
                 <div className="label">Steps</div>
-                {this.state.steps.map (step => (
-                    <NewStep step={step} />
-                ))}
-                <NewStep handleChange = {this.handleChange} step={this.state.step}/>
-                <button onClick={this.newStep}>New Step</button>
+                {/* {this.state.steps.map (step => (
+                    <div>{step.title}</div>
+                ))} */}
+                <input
+                    type="text"
+                    name="step"
+                    onChange={this.handleChange}
+                    value={this.state.step}
+                    placeholder="New Step"
+                />
+                <NewStep newStep={this.newStep} step={this.state.step}/>
+                
+                {/* <button onClick={this.newStep}>New Step</button> */}
                 <button onClick={this.handleSubmit}>Add</button>
                 </form>
                

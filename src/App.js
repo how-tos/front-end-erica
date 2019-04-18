@@ -7,6 +7,7 @@ import AddHowTo from './components/AddHowTo'
 import Register from './components/Register'
 import SavedGuides from './components/SavedGuides'
 import MyGuides from './components/MyGuides';
+import HowTo from './components/HowTo';
 
 class App extends Component {
   constructor() {
@@ -49,6 +50,7 @@ class App extends Component {
     <Route path = "/register" render = {props => <Register {...props} /> } />
     <Route path ="/savedGuides" render = {props => <SavedGuides {...props} /> } />    
     <Route path ="/myGuides" render = {props => <MyGuides {...props} /> } />
+    <Route path ="/guide" render = {props => <HowTo {...props} /> } />
       </div>
     );
   }
