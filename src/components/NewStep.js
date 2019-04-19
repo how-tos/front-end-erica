@@ -39,7 +39,7 @@ class NewStep extends React.Component {
                 placeholder="description"
                 />
 
-                {/* <button onClick={ (e) => {this.props.newStep(e, this.state)}}>New Step</button> */}
+                <button onClick={ (e) => {this.props.newStep(e, this.state)}}>New Step</button>
             </div>
         )
     }
