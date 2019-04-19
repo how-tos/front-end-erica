@@ -101,7 +101,8 @@ class App extends Component {
       savedGuides={this.state.savedGuides} /> } />    
     
     <Route path ="/myGuides" render = {props => <MyGuides {...props} 
-      createPost = {this.createPost}/> } />
+      createPost = {this.createPost}/> } 
+      authorID = {this.userID}/>
       </div>
 
     );
