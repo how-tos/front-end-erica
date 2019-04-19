@@ -82,7 +82,7 @@ render() {
                     <img className="cancel-create" src={cancel} onClick={this.cancelCreate}/>
             </div> 
             <div className="label">Cover Image</div>
-            <div className="uploader"><ImageUploader /></div>
+            <div className="uploader"><ImageUploader selectedPostId={this.props.selectedPostId}/></div>
             <div className="guideForm">
                 <form className="guideForm" onSubmit={this.handleSubmit}>
                 <div className="label">Guide Title</div>
