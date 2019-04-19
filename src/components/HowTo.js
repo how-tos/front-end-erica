@@ -37,7 +37,7 @@ class HowTo extends React.Component {
     render() {
         return (
                 <div className="Howto">
-                    <img className="cover" src={gardening}/>
+                    <img className="cover" src={this.props.img}/>
                     <div className="information">
                         <div className="title-like">
                             <p>{this.props.name}</p>

@@ -165,7 +165,6 @@ render() {
 
     return(
         <div>
-             <Navigation createPost={this.props.createPost}/>
              {!this.state.isSelected ? <div>
         <div className="secondary-header">
             <div className="title">Browse Guides</div>
@@ -195,14 +194,13 @@ render() {
                     name={howTo.title}
                     tags={howTo.tags}
                     steps={howTo.steps}
+                    img = {howTo.image}
                 /></div>)}
                 
             </div>
             </div>
             : this.state.HowTos.filter(howTo => howTo._id === this.state.selectedId).map(object => 
                 <Guide 
-                // random = {this.state.random}
-                // images = {this.state.images}
                 deselect = {this.deselect}
                 clearSelected = {this.clearSelected}
                 name = {object.title}

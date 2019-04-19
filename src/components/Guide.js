@@ -7,6 +7,7 @@ import gardening2 from '../img/gardening2.jpeg';
 import woodworking from '../img/woodworking.jpeg';
 import Back from '../img/back.png'
 import axiosWithHeaders from './utils/headers';
+import EditHowTo from './EditHowTo';
 
 
 class Guide extends React.Component {
@@ -15,6 +16,8 @@ class Guide extends React.Component {
         this.state={
             isFavorite: true,
             userID: props.userID,
+            editingPost: [],
+            isEditing: false,
         }
     }
 
@@ -73,18 +76,34 @@ class Guide extends React.Component {
             
     }
 
+
+    editPost = () => {
+        console.log("editing post")
+        
+        axiosWithHeaders()
+            .put(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedId}`)
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    editingPost: res.data,
+                    isEditing: true,
+                })
+            })
+            .catch(err => console.log(err.response));
+    }
    
 
     render() {
         return (
             <div className="guide">      
-                
+                {!this.state.isEditing ? <div>
                 <div className="secondary-header-guide">
                     <div className="title-back">
                         <img onClick={this.props.clearSelected} className="back" src={Back}/>
                         <div className="title">{this.props.name}</div>
                     </div>
                     <button onClick={this.deletePost}>delete</button>
+                    <button onClick={this.editPost}>Edit</button>
                     <img className="heart-icon-guide"  onClick ={(e) => this.save(e, this.props.id)} src={!this.state.isSaved ? HeartIcon : RedHeart} />
                 </div> 
                 <div className="medicinePills-guide">{this.props.tags.map(tag => (<div className="pill-guide">{tag}</div>))}</div>
@@ -93,7 +112,9 @@ class Guide extends React.Component {
                     <div>{step.title}
                 {step.text} </div>)
                 )}
-                    </div>
+                    </div></div> :
+                    <EditHowTo title={this.props.name} tags={this.props.tags} img={this.props.image}/>
+                }
             </div> 
         )
     }
