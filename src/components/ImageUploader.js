@@ -1,5 +1,6 @@
 // Import React FilePond
 import React from 'react';
+import axios from 'axios';
 import { FilePond, registerPlugin } from "react-filepond";
 
 // Import FilePond styles
@@ -26,10 +27,43 @@ class ImageUploader extends React.Component {
       files: []
     };
   }
+  componentDidUpdate(prevState) {
+    if (this.state.files !== prevState.files) {
+      this.uploadCloudinary(this.state.files[0], this.props.selectedPostId);
+    }
+  };
+
+  uploadCloudinary(file, howtoID) {
+    // Cloudinary settings
+    let unsignedUploadPreset = 'ia1o6v0w';
+    let url = `https://api.cloudinary.com/v1_1/ha5292nce/upload`;
+
+    let xhr = new XMLHttpRequest();
+    let fd = new FormData();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+    xhr.onreadystatechange = function(e) {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // File uploaded successfully
+        let response = JSON.parse(xhr.responseText);
+        console.log('successful upload!', response.secure_url);
+        // https://res.cloudinary.com/cloudName/image/upload/v1483481128/public_id.jpg
+        let url = response.secure_url;
+
+        axios.put(`https://how-to-lambda.herokuapp.com/api/how-to/${howtoID}/image`, {image: url})
+      }
+    };
+
+    fd.append('upload_preset', unsignedUploadPreset);
+    fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
+    fd.append('file', file);
+    xhr.send(fd);
+  };
 
   handleInit() {
     console.log("FilePond instance has initialised", this.pond);
-  }
+  };
 
   render() {
     return (
@@ -39,9 +73,9 @@ class ImageUploader extends React.Component {
           style={{width: '50px'}}
           ref={ref => (this.pond = ref)}
           files={this.state.files}
-          allowMultiple={true}
-          maxFiles={3}
-          server="/api/"
+          allowMultiple={false}
+          maxFiles={1}
+          // server="/api/"
           oninit={() => this.handleInit()}
           onupdatefiles={fileItems => {
             // Set currently active file objects to this.state
@@ -53,6 +87,6 @@ class ImageUploader extends React.Component {
       </div>
     );
   }
-}
+};
 
 export default ImageUploader;
