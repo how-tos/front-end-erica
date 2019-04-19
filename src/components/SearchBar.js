@@ -21,14 +21,15 @@ class SearchBar extends React.Component {
         });
     }
 
-    // clearSearch = e => {
-    //     e.preventDefault();
-    //     console.log("Clear search")
-    //     this.setState({
-    //         isFiltered: false,
-    //     })
-    // }
-
+    handleClearSearch = (e) => {
+        this.setState({
+            search: '',
+        });
+        if (this.props.clearSearch) {
+            this.props.clearSearch(e);
+        }
+    }
+    
     search = () => {
         console.log("Searching")
         console.log(this.state.searching)
@@ -41,14 +42,17 @@ class SearchBar extends React.Component {
         return (
             <div className="search">
                     <img onClick={this.search} className="search-icon" src={Search} />
-                    {this.state.searching ?<div className="searchInput">
-                    <input className="searchbar" onKeyPress={ (e) => {this.props.filterGuides(e, this.state.search)}}
+                    {this.state.searching ? <div className="searchInput">
+                    <input className="searchbar" onKeyPress={ (e) => {
+                        console.log(this.state.search);
+                        this.props.filterGuides(e, this.state.search)
+                    }}
                     type="text"
                     name="search"
                     onChange={ (e) => {this.handleChange(e)}}
                     value={this.state.search}
                     />
-                    <img src={cross} className="clear" onClick={this.props.clearSearch} style={!this.props.isFiltered ? {display: 'none'} : {display: "block"}} />
+                    <img src={cross} className="clear" onClick={this.handleClearSearch} style={!this.props.isFiltered ? {display: 'none'} : {display: "block"}} />
                     </div> : ' '}
             </div>
         )

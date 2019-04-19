@@ -14,12 +14,12 @@ class AddHowTo extends React.Component {
             authorID: props.userID,
             title: "",
             tags: [],
-            // steps: {
-            //     title: '',
-            //     text: '',
-            //     id: '',
-            // }, 
-            // step: '',
+            steps: [], 
+            step: {
+                title: '',
+                text: '',
+                id: '',
+            },
         }
     }
     handleChange = e => {
@@ -32,36 +32,49 @@ class AddHowTo extends React.Component {
         const { authorID, title, tags } = this.state;
         e.preventDefault();
         console.log("submitted", this.props.userID);
-        // const newHowTo = {
-        //     authorID,
-        //     title,
-        //     tags,
-        // };
-        const newStep = this.state;
+        const newHowTo = {
+            authorID,
+            title,
+            tags,
+        };
+
                 
         axiosWithHeaders()
-        .post (`https://how-to-lambda.herokuapp.com/api/how-to/`, newStep)
+        .post (`https://how-to-lambda.herokuapp.com/api/how-to/`, newHowTo)
         .then(res => {
-            this.props.history.push("/howTos");
+            let axiosPromise = null;
+            this.state.steps.forEach(step => {
+                if (axiosPromise == null) {
+                    axiosPromise = axiosWithHeaders()
+                    .post (`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.createdHowTo._id}`, step)
+                } else {
+                    axiosPromise.then(res => {
+                        axiosPromise = axiosWithHeaders()
+                            .post (`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.createdHowTo._id}`, step)
+                    })
+                    .catch(err=>console.log(err.response))
+                }
+            });
+            axiosPromise.finally(() => this.props.history.push("/howTos"));
+            
         })
         .catch(err=>console.log(err.response));
+        
     }
 
     newStep = (e, step) =>{
-        const newStep = this.state.steps; 
+        const oldStep = this.state.steps; 
         e.preventDefault();
         console.log("New Step")
         this.setState({
-            steps: (newStep, step),
+            steps: [...oldStep, step],
         })
-        // const item = this.state.steps;
-        // item.push('hello')
-        // this.setState({steps:item});
 
-        axiosWithHeaders()
-            .post(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedPostId}/steps`, step)
-            .then(res => {console.log(res)})
-            .catch(err => console.log(err.response));
+        // axiosWithHeaders()
+        //     .post(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedPostId}/steps`, step)
+        //     .then(res => {
+        //         console.log(res)})
+        //     .catch(err => console.log(err.response));
     }
 
     cancelCreate = () => {
@@ -106,16 +119,15 @@ render() {
                     />
                 </div>
                 <div className="label">Steps</div>
-                {/* {this.state.steps.map (step => (
-                    <div>{step.title}</div>
-                ))} */}
-                {/* <input
+
+                {/* /* <input
                     type="text"
                     name="step"
                     onChange={this.handleChange}
                     value={this.state.step}
                     placeholder="New Step"
-                /> */}
+                /> */ }
+                {this.state.steps.map(step => <div>{step.title}</div>)}
                 <NewStep newStep={this.newStep} step={this.state.step}/>
                 
                 {/* <button onClick={this.newStep}>New Step</button> */}

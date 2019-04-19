@@ -44,7 +44,7 @@ class HowToList extends React.Component {
             let newArray = [];
             console.log(this.state.HowTos)
             this.state.HowTos.map(guide => {
-                const LowerCase = guide.title.toLowerCase()
+                const LowerCase = guide.title ? guide.title.toLowerCase() : '';
                 // const LowerTags = guide.tag.map(tag=> tag.toLowerCase())
                 const tags = guide.tags;
                 
@@ -124,6 +124,20 @@ class HowToList extends React.Component {
 
     }
 
+    deselect = () => {
+        axiosWithHeaders()
+        .get("https://how-to-lambda.herokuapp.com/api/how-to")
+        .then(res => {
+            this.setState({
+                HowTos: res.data, 
+            });
+        })
+        .catch(err => console.log("failed to get data", err.response));
+        this.setState({
+            isSelected: false,
+        })
+    }
+
     clearSelected = () => {
         this.setState({
             selectedId: '',
@@ -159,7 +173,7 @@ render() {
 
             <div className="list">
             {this.state.isFiltered ? this.state.filteredList.map(howTo => (
-                    <div className = "listofGuides" onClick={this.selected(howTo._id)}><HowTo className="individualGuide"
+                    <div className = "listofGuides" onClick={() => this.selected(howTo._id)}><HowTo className="individualGuide"
                         key={howTo._id}
                         HowTo={howTo}
                         name={howTo.title}
@@ -178,6 +192,7 @@ render() {
             </div>
             : this.state.HowTos.filter(howTo => howTo._id === this.state.selectedId).map(object => 
                 <Guide 
+                deselect = {this.deselect}
                 clearSelected = {this.clearSelected}
                 name = {object.title}
                 tags = {object.tags}

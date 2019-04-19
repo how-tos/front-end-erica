@@ -42,7 +42,7 @@ class Guide extends React.Component {
             })
         }
 
-        console.log(this.props.id)
+        console.log(this.props.iqaaaaaaz2wwwwswawssd)
         axiosWithHeaders()
             .post(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.id}/favorite`, newSave)
             .then(res => {
@@ -60,7 +60,8 @@ class Guide extends React.Component {
             .delete(`https://how-to-lambda.herokuapp.com/api/how-to/${this.props.selectedId}`)
             .then(res => {
                 console.log(res);
-
+                this.setState();
+                this.props.deselect();
 
                 // if(status == '204') {
                 //     this.props.history.push('/howTos');
