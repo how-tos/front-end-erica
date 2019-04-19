@@ -4,7 +4,7 @@ import SearchBar from './SearchBar'
 import Navigation from './Navigation'
 import '../css/howto.css'
 import axiosWithHeaders from './utils/headers';
-import gardening from '../img/gardening.jpeg';
+import gardening from '../img/gardening.jpeg'
 import gardening2 from '../img/gardening2.jpeg';
 import woodworking from '../img/woodworking.jpeg';
 import {Link, Route} from 'react-router-dom';
@@ -20,10 +20,11 @@ class HowToList extends React.Component {
             isFiltered: false,
             search: '',
             allTags: props.allTags,
-            images: [gardening, gardening2, woodworking],
             selectedId: '',
             isSelected: false, 
+            random: '', 
             // selectedGuide: [],
+            images: [gardening, gardening2, woodworking]
         }
     }
     
@@ -149,6 +150,14 @@ class HowToList extends React.Component {
         this.props.getSavedId(id)
     }
 
+    // getInt = (max) => {
+    //     let randomNum = Math.floor(Math.random() * Math.floor(max));
+    //     this.setState({ 
+    //         random: randomNum,
+    //     })
+    //     console.log(randomNum)
+    // }
+
 render() {
     if(!localStorage.getItem("token")) {
         return <h1>You are not an authorized user. Please log in again</h1>;
@@ -192,6 +201,8 @@ render() {
             </div>
             : this.state.HowTos.filter(howTo => howTo._id === this.state.selectedId).map(object => 
                 <Guide 
+                // random = {this.state.random}
+                // images = {this.state.images}
                 deselect = {this.deselect}
                 clearSelected = {this.clearSelected}
                 name = {object.title}
@@ -202,7 +213,8 @@ render() {
                 setSave = {this.setSave}
                 userID = {this.props.userID}
                 selectedId = {this.state.selectedId}
-                />)
+                />,
+                )
 
             } 
             

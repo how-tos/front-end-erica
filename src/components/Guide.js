@@ -3,6 +3,8 @@ import '../css/guide.css'
 import HeartIcon from '../img/heart_outline.svg'
 import RedHeart from '../img/red_heart.png'
 import gardening from '../img/gardening.jpeg'
+import gardening2 from '../img/gardening2.jpeg';
+import woodworking from '../img/woodworking.jpeg';
 import Back from '../img/back.png'
 import axiosWithHeaders from './utils/headers';
 
